@@ -29,7 +29,7 @@ const url = 'https://api.openai.com/v1/chat/completions'; // Replace with your U
 const filePath = 'data/subHeaderList.json'; // Replace with the desired file path
 
 
-async function fetchDataAndWriteAsJson(url, filePath, postData) {
+async function fetchDataAndWriteAsJson(url, filePath, topic, postData) {
   console.log(`Bearer ${process.env.OPENAI_API_KEY}`);
   try {
     const response = await fetch(url, {
@@ -43,7 +43,7 @@ async function fetchDataAndWriteAsJson(url, filePath, postData) {
     const data =  response.choices[0].message.content.split("\n").map((e) => e.substring(2).trim())
     const jsonData = JSON.stringify(data, null, 2);
 
-    fs.writeFileSync(filePath, jsonData);
+    fs.writeFileSync(filePath, {topic, subHeader: jsonData});
     console.log(`Data written to ${filePath} successfully.`);
   } catch (error) {
     console.error('An error occurred:', error);
@@ -53,4 +53,4 @@ async function fetchDataAndWriteAsJson(url, filePath, postData) {
 if(!process.env.OPENAI_API_KEY)
 throw "process.env.OPENAI_API_KEY is undefined. Please specify OPENAPI_API_KEY in your env file"
 
-fetchDataAndWriteAsJson(url, filePath, postData);
+fetchDataAndWriteAsJson(url, filePath, topic, postData);
