@@ -3,35 +3,47 @@ import fs from 'fs';
 import dotenv from 'dotenv';
 
 import CONST from "./config/chatGpt.js"
-const {chatGptSubHeaderRequest} = CONST
+const {chatGptSubHeaderRequest, chatGptSubtitleRequest} = CONST
 
 dotenv.config();
 
 const topic = process.argv[2] || 'Meltwater'; // Processing argument with default being meltwater
 console.log("Topic used for chat gpt : ", topic)
 
-const request = chatGptSubHeaderRequest(topic)
+const requestCategories = chatGptSubHeaderRequest(topic)
+const requestSubtitle = chatGptSubtitleRequest(topic)
 
 
-
-async function fetchDataAndWriteAsJson(request) {
-  // console.log(`Bearer ${process.env.OPENAI_API_KEY}`);
-  const { postData, filePath, url } =  request
+async function fetchDataAndWriteAsJson(requestCategories, requestSubtitle) {
+  const { postData: postDataSubHeader , filePath, url } =  requestCategories
+  const { postData: postDataSubtitle } =  requestSubtitle
   try {
-    const response = await fetch(url, {
+    // Request subHeader
+    const responseSubHeader = await fetch(url, {
       headers: {
         'Content-Type': 'application/json',
         "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
       },
       method: "POST",
-      body: JSON.stringify(postData)
+      body: JSON.stringify(postDataSubHeader)
     }).then((response) => response.json())
+    console.log("\nsubheader list : ", responseSubHeader.choices[0].message.content.split("\n"))
+    const subHeaderList =  responseSubHeader.choices[0].message.content.split("\n").map((e) => e.substring(2).trim())
+
+    const responseSubtitle = await fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+      },
+      method: "POST",
+      body: JSON.stringify(postDataSubtitle)
+    }).then((response) => response.json())
+    console.log("\nsubheader list : ", responseSubtitle.choices[0].message.content.split("\n"))
+    const subtitle =  responseSubtitle.choices[0].message.content.split("\n").map((e) => e.trim().replace(".",""))
+
+    const dataToStringify = {topic, subtitle, subHeaderList}
     console.log("\n")
-    console.log("subheader list : ", response.choices[0].message.content.split("\n"))
-    const subHeaderList =  response.choices[0].message.content.split("\n").map((e) => e.substring(2).trim())
-    const dataToStringify = {topic, subHeaderList}
-    console.log("\n")
-    console.log("data to stringifty :", dataToStringify)
+    console.log("\ndata to stringifty :", dataToStringify)
     const jsonData = JSON.stringify(dataToStringify);
 
     fs.writeFileSync(filePath, jsonData);
@@ -44,4 +56,4 @@ async function fetchDataAndWriteAsJson(request) {
 if(!process.env.OPENAI_API_KEY)
 throw "process.env.OPENAI_API_KEY is undefined. Please specify OPENAPI_API_KEY in your env file"
 
-fetchDataAndWriteAsJson(request);
+fetchDataAndWriteAsJson(requestCategories, requestSubtitle);

@@ -9,7 +9,7 @@ import ReactMarkdown from 'react-markdown';
 
 import { getBodyFromChatGpt } from '@/api/chatGpt';
 import { Meta } from '@/layouts/Meta';
-import subHeaderFile from '@/public/chatGpt/subHeaderList.json';
+import subHeaderFile from '@/public/chatGpt/siteInfo.json';
 import { Main } from '@/templates/Main';
 
 type IBlogUrl = {
@@ -39,6 +39,7 @@ export const getStaticProps: GetStaticProps<IBlogProps, IBlogProps> = async ({
   params,
 }) => {
   const data = await getBodyFromChatGpt(params!.slug);
+  // const data = "lorem ipsum"
   return {
     props: {
       slug: params!.slug,

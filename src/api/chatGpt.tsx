@@ -2,7 +2,7 @@
 /* eslint-disable import/extensions */
 import axios from 'axios';
 
-import subHeaderFile from '@/public/chatGpt/subHeaderList.json';
+import subHeaderFile from '@/public/chatGpt/siteInfo.json';
 import * as CONST_CHAT_GPT from '@/config/chatGpt';
 
 const { chatGptArticleRequest } = CONST_CHAT_GPT;

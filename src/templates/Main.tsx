@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
-import subHeaderFile from '@/public/chatGpt/subHeaderList.json';
+import subHeaderFile from '@/public/chatGpt/siteInfo.json';
 import { AppConfig } from '@/utils/AppConfig';
 
 type IMainProps = {
@@ -23,7 +23,7 @@ const Main = (props: IMainProps) => (
         </div>
         <nav>
           <ul className="flex flex-wrap text-xl">
-            <li className="mr-6">
+            <li className="mr-6 list-none">
               <Link
                 href="/"
                 className="border-none text-gray-700 hover:text-gray-900"
@@ -32,7 +32,7 @@ const Main = (props: IMainProps) => (
               </Link>
             </li>
             {subHeaderFile.subHeaderList.map((subHeader) => (
-              <li key={subHeader} className="mr-6">
+              <li key={subHeader} className="mr-6 list-none">
                 <Link
                   href={`/${subHeader}/`}
                   className="border-none text-gray-700 hover:text-gray-900"
@@ -41,30 +41,6 @@ const Main = (props: IMainProps) => (
                 </Link>
               </li>
             ))}
-            {/* <li className="mr-6">
-              <Link
-                href="/about/"
-                className="border-none text-gray-700 hover:text-gray-900"
-              >
-                About
-              </Link>
-            </li>
-            <li className="mr-6">
-              <a
-                className="border-none text-gray-700 hover:text-gray-900"
-                href="https://github.com/ixartz/Next-js-Boilerplate"
-              >
-                GitHub
-              </a>
-            </li>
-            <li className="mr-6">
-              <Link
-                href="/blog/"
-                className="border-none text-gray-700 hover:text-gray-900"
-              >
-                Blog
-              </Link>
-            </li> */}
           </ul>
         </nav>
       </header>

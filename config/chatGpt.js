@@ -1,9 +1,11 @@
+// Global
+
 const model = 'gpt-3.5-turbo';
 const urlAPICompletion = 'https://api.openai.com/v1/chat/completions';
 
-// Config for the call of the script, calling the subheader call
+const filePathToExport = 'public/chatGpt/siteInfo.json';
 
-const filePathToExportSubHeader = 'public/chatGpt/subHeaderList.json';
+// SubHeader
 
 const chatGptSubHeaderPrompt = (topic) => [
   {
@@ -12,11 +14,15 @@ const chatGptSubHeaderPrompt = (topic) => [
   },
   {
     role: 'system',
-    content: `Give only an unordered list of navigation bar item, without media nor contact nor contact us nor blog`,
+    content: `Respond only with the items, directly.`,
   },
   {
     role: 'system',
-    content: `Give at most 8 items and make each items concise`,
+    content: `Give only an unordered list of navigation bar item, without media nor contact nor contact us nor blog nor References nor about`,
+  },
+  {
+    role: 'system',
+    content: `Give at between 4 and 7 items and make each items 5 words at most`,
   },
 ];
 
@@ -25,34 +31,52 @@ const chatGptSubHeaderRequest = (topic) => ({
     messages: chatGptSubHeaderPrompt(topic),
     model,
   },
-  filePath: filePathToExportSubHeader,
+  filePath: filePathToExport,
   url: urlAPICompletion,
 });
 
-// Config for the call for the differents pages
+// Subtitle
+
+const chatGptSubtitlePrompt = (topic) => [
+  {
+    role: 'user',
+    content: `Generate a subtitle of website about the topic ${topic}, without including ${topic}`,
+  },
+  {
+    role: 'system',
+    content: `Make it 10 words at most.`,
+  },
+  {
+    role: 'system',
+    content: `Only alphabetic character or emoji, no quote`,
+  },
+];
+
+const chatGptSubtitleRequest = (topic) => ({
+  postData: {
+    messages: chatGptSubtitlePrompt(topic),
+    model,
+  },
+  filePath: filePathToExport,
+  url: urlAPICompletion,
+});
+
+// Content
 
 const filePathToExportArticle = (article) => `data/subHeader${article}.json`;
 
 const chatGptArticlePrompt = (topic, article) => [
   {
     role: 'user',
-    content: `Generate an article about the ${article} of ${topic}`,
+    content: `Generate an article about the ${article} of ${topic} without introduction nor conclusion`,
   },
   {
     role: 'system',
-    content: `Generate it like it would be the content of a web-page`,
-  },
-  {
-    role: 'system',
-    content: `Gives only the article. Don't put the title.`,
+    content: `Generate it like it would be the content of a web-page.`,
   },
   {
     role: 'system',
     content: `Format it in markdown. Uses # and ## tags.`,
-  },
-  {
-    role: 'system',
-    content: `Don't put any introduction or conclusion.`,
   },
 ];
 
@@ -68,4 +92,5 @@ const chatGptArticleRequest = (topic, article) => ({
 module.exports = {
   chatGptSubHeaderRequest,
   chatGptArticleRequest,
+  chatGptSubtitleRequest,
 };
