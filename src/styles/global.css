@@ -12,20 +12,24 @@ a:hover {
 h1 {
   @apply text-2xl;
   @apply font-bold;
+  @apply antialiased
 }
 
 h2 {
   @apply text-lg;
   @apply font-semibold;
+  @apply antialiased
 }
 
 p {
   @apply text-base;
+  @apply antialiased
 }
 
  li {
   @apply list-disc;
   @apply text-base;
+  @apply antialiased
 }
 
 @tailwind components;

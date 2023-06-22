@@ -9,7 +9,7 @@ import ReactMarkdown from 'react-markdown';
 
 import { getBodyFromChatGpt } from '@/api/chatGpt';
 import { Meta } from '@/layouts/Meta';
-import subHeaderFile from '@/public/chatGpt/siteInfo.json';
+import siteInfo from '@/public/chatGpt/siteInfo.json';
 import { Main } from '@/templates/Main';
 
 type IBlogUrl = {
@@ -21,12 +21,7 @@ type IBlogProps = IBlogUrl & {
 };
 
 export const getStaticPaths: GetStaticPaths<IBlogUrl> = async () => {
-  // const pathsData = await fetch(
-  //   'https://random-data-api.com/api/v2/users?size=10'
-  // ).then((response) => response.json());
-  // const indexList: string[] = pathsData.map((e: any) => `${e.id}`);
-  // console.log('index liste : ', indexList);
-  const { subHeaderList } = subHeaderFile;
+  const { subHeaderList } = siteInfo;
   return {
     paths: subHeaderList.map((subHeader: string) => ({
       params: { slug: `${subHeader}` },
@@ -39,7 +34,6 @@ export const getStaticProps: GetStaticProps<IBlogProps, IBlogProps> = async ({
   params,
 }) => {
   const data = await getBodyFromChatGpt(params!.slug);
-  // const data = "lorem ipsum"
   return {
     props: {
       slug: params!.slug,

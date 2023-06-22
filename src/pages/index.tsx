@@ -1,4 +1,5 @@
 import { Meta } from '@/layouts/Meta';
+import siteInfo from '@/public/chatGpt/siteInfo.json';
 import { Main } from '@/templates/Main';
 
 const Index = () => {
@@ -6,28 +7,32 @@ const Index = () => {
     <Main
       meta={
         <Meta
-          title="Next.js Boilerplate Presentation"
-          description="Next js Boilerplate is the perfect starter code for your project. Build your React application with the Next.js framework."
+          title="Site presentation"
+          description="Next js Boilerplate is the perfect starter code for your project. Build your React application with the."
         />
       }
     >
-      {/* <h3 className="text-2xl font-bold">IA-generated website</h2> */}
-
-      <p>This whole website has been generated only with a phrase: test</p>
-      <p>
-        <span role="img" aria-label="rocket">
-          🚀
-        </span>{' '}
-        Next.js Boilerplate is a starter code for your Next js project by
-        putting developer experience first .{' '}
-        <span role="img" aria-label="zap">
-          ⚡️
-        </span>{' '}
-        Made with Next.js, TypeScript, ESLint, Prettier, Husky, Lint-Staged,
-        VSCode, Netlify, PostCSS, Tailwind CSS.
+      <p className="text-base font-semibold">
+        Except this page, all of this website has been generated with this
+        prompt :{' '}
+        <span
+          className="animate-text bg-gradient-to-r 
+            from-indigo-500 via-purple-500  to-indigo-500 
+            bg-clip-text text-xl font-semibold
+            text-transparent"
+        >
+          {siteInfo.topic}
+        </span>
       </p>
-      <h3 className="text-lg font-semibold">Next js Boilerplate Features</h3>
-      <p>Developer experience first:</p>
+
+      <p className="">
+        This project has been done in three days as a part of the{' '}
+        <a href="https://mwhack.com/about" rel="nofollow">
+          Meltwater 2023 hackaton
+        </a>
+        .
+      </p>
+      <h3 className="font-semibold">Technologies used :</h3>
       <ul>
         <li>
           <span role="img" aria-label="fire">
@@ -36,132 +41,60 @@ const Index = () => {
           <a href="https://nextjs.org" rel="nofollow">
             Next.js
           </a>{' '}
-          for Static Site Generator
+          for Static Site Generation
         </li>
         <li>
-          <span role="img" aria-label="art">
-            🎨
-          </span>{' '}
-          Integrate with{' '}
-          <a href="https://tailwindcss.com" rel="nofollow">
-            Tailwind CSS
-          </a>
-        </li>
-        <li>
-          <span role="img" aria-label="nail_care">
-            💅
-          </span>{' '}
-          PostCSS for processing Tailwind CSS
-        </li>
-        <li>
-          <span role="img" aria-label="tada">
-            🎉
-          </span>{' '}
-          Type checking Typescript
-        </li>
-        <li>
-          <span role="img" aria-label="pencil2">
-            ✏️
-          </span>{' '}
-          Linter with{' '}
-          <a href="https://eslint.org" rel="nofollow">
-            ESLint
-          </a>
-        </li>
-        <li>
-          <span role="img" aria-label="hammer_and_wrench">
-            🛠
-          </span>{' '}
-          Code Formatter with{' '}
-          <a href="https://prettier.io" rel="nofollow">
-            Prettier
-          </a>
-        </li>
-        <li>
-          <span role="img" aria-label="fox_face">
-            🦊
-          </span>{' '}
-          Husky for Git Hooks
-        </li>
-        <li>
-          <span role="img" aria-label="no_entry_sign">
-            🚫
-          </span>{' '}
-          Lint-staged for running linters on Git staged files
-        </li>
-        <li>
-          <span role="img" aria-label="no_entry_sign">
-            🗂
-          </span>{' '}
-          VSCode configuration: Debug, Settings, Tasks and extension for
-          PostCSS, ESLint, Prettier, TypeScript
-        </li>
-        <li>
-          <span role="img" aria-label="robot">
+          <span role="img" aria-label="fire">
             🤖
           </span>{' '}
-          SEO metadata, JSON-LD and Open Graph tags with Next SEO
-        </li>
-        <li>
-          <span role="img" aria-label="robot">
-            ⚙️
-          </span>{' '}
           <a
-            href="https://www.npmjs.com/package/@next/bundle-analyzer"
+            href="https://platform.openai.com/docs/api-reference"
             rel="nofollow"
           >
-            Bundler Analyzer
+            Chat-gpt
+          </a>{' '}
+          for content generation
+        </li>
+      </ul>
+      <h3 className="font-semibold">To-do</h3>
+      <ul>
+        <li>
+          <span role="img" aria-label="fire">
+            🔨
+          </span>{' '}
+          Refactor code
+          <a
+            href="https://github.com/GautierArcin/mw-hackaton-2023"
+            rel="nofollow"
+          >
+            (which is available here)
+          </a>{' '}
+        </li>
+        <li>
+          <span role="img" aria-label="fire">
+            🎨
+          </span>{' '}
+          Add IA-generated image with{' '}
+          <a href="https://stablediffusionapi.com/playground" rel="nofollow">
+            mid-journey
           </a>
         </li>
         <li>
-          <span role="img" aria-label="rainbow">
-            🌈
+          <span role="img" aria-label="fire">
+            🌎
           </span>{' '}
-          Include a FREE minimalist theme
+          Add localization through{' '}
+          <a href="https://www.deepl.com/fr/pro-api" rel="nofollow">
+            DeepL
+          </a>
         </li>
         <li>
-          <span role="img" aria-label="hundred">
-            💯
+          <span role="img" aria-label="fire">
+            📄
           </span>{' '}
-          Maximize lighthouse score
+          Link each page to the different prompt that generated it
         </li>
       </ul>
-      <p>Built-in feature from Next.js:</p>
-      <ul>
-        <li>
-          <span role="img" aria-label="coffee">
-            ☕
-          </span>{' '}
-          Minify HTML &amp; CSS
-        </li>
-        <li>
-          <span role="img" aria-label="dash">
-            💨
-          </span>{' '}
-          Live reload
-        </li>
-        <li>
-          <span role="img" aria-label="white_check_mark">
-            ✅
-          </span>{' '}
-          Cache busting
-        </li>
-      </ul>
-      <h3 className="text-lg font-semibold">Our Stater code Philosophy</h3>
-      <ul>
-        <li>Minimal code</li>
-        <li>SEO-friendly</li>
-        <li>
-          <span role="img" aria-label="rocket">
-            🚀
-          </span>{' '}
-          Production-ready
-        </li>
-      </ul>
-      <p>
-        You can check out the source code of the project{' '}
-        <a href="https://github.com/GautierArcin/mw-hackaton-2023">here</a>.
-      </p>
     </Main>
   );
 };

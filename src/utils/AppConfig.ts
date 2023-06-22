@@ -1,8 +1,8 @@
 // FIXME: Update this configuration file based on your project information
 
-import subHeaderFile from '@/public/chatGpt/siteInfo.json';
+import siteInfo from '@/public/chatGpt/siteInfo.json';
 
-const { topic, subtitle } = subHeaderFile;
+const { topic, subtitle } = siteInfo;
 
 export const AppConfig = {
   site_name: topic,
