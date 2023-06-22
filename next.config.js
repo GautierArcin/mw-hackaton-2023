@@ -7,6 +7,7 @@ module.exports = withBundleAnalyzer({
   eslint: {
     dirs: ['.'],
   },
+  env: { OPENAI_API_KEY: process.env.OPENAI_API_KEY },
   poweredByHeader: false,
   trailingSlash: true,
   basePath: '',
