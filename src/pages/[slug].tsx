@@ -1,10 +1,15 @@
+/* eslint-disable react/no-children-prop */
 import type {
   GetStaticPaths,
   GetStaticProps,
   InferGetStaticPropsType,
 } from 'next';
+import React from 'react';
+import ReactMarkdown from 'react-markdown';
 
+import { getBodyFromChatGpt } from '@/api/chatGpt';
 import { Meta } from '@/layouts/Meta';
+import subHeaderFile from '@/public/chatGpt/subHeaderList.json';
 import { Main } from '@/templates/Main';
 
 type IBlogUrl = {
@@ -16,14 +21,15 @@ type IBlogProps = IBlogUrl & {
 };
 
 export const getStaticPaths: GetStaticPaths<IBlogUrl> = async () => {
-  const pathsData = await fetch(
-    'https://random-data-api.com/api/v2/users?size=10'
-  ).then((response) => response.json());
-  const indexList: string[] = pathsData.map((e: any) => `${e.id}`);
-  console.log('index liste : ', indexList);
+  // const pathsData = await fetch(
+  //   'https://random-data-api.com/api/v2/users?size=10'
+  // ).then((response) => response.json());
+  // const indexList: string[] = pathsData.map((e: any) => `${e.id}`);
+  // console.log('index liste : ', indexList);
+  const { subHeaderList } = subHeaderFile;
   return {
-    paths: indexList.map((_, i) => ({
-      params: { slug: `${i}` },
+    paths: subHeaderList.map((subHeader: string) => ({
+      params: { slug: `${subHeader}` },
     })),
     fallback: false,
   };
@@ -32,26 +38,21 @@ export const getStaticPaths: GetStaticPaths<IBlogUrl> = async () => {
 export const getStaticProps: GetStaticProps<IBlogProps, IBlogProps> = async ({
   params,
 }) => {
-  const dataRequest = await fetch(
-    'https://jsonplaceholder.typicode.com/posts/1'
-  ).then((response) => response.json());
-  // console.log('data request : ', dataRequest);
+  const data = await getBodyFromChatGpt(params!.slug);
   return {
     props: {
       slug: params!.slug,
-      data: dataRequest.body,
+      data,
     },
   };
 };
 
 const Blog = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   console.log('props : ', props);
+  console.log('typeof data ', typeof props.data);
   return (
     <Main meta={<Meta title={props.slug} description="Lorem ipsum" />}>
-      <h1 className="capitalize">{props.slug}</h1>
-      {[props?.data].map((e) => (
-        <p key={e}>{e}</p>
-      ))}
+      <ReactMarkdown children={props.data} />
     </Main>
   );
 };

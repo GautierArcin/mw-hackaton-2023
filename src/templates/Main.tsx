@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
+import subHeaderFile from '@/public/chatGpt/subHeaderList.json';
 import { AppConfig } from '@/utils/AppConfig';
 
 type IMainProps = {
@@ -27,10 +28,20 @@ const Main = (props: IMainProps) => (
                 href="/"
                 className="border-none text-gray-700 hover:text-gray-900"
               >
-                Home
+                About
               </Link>
             </li>
-            <li className="mr-6">
+            {subHeaderFile.subHeaderList.map((subHeader) => (
+              <li key={subHeader} className="mr-6">
+                <Link
+                  href={`/${subHeader}/`}
+                  className="border-none text-gray-700 hover:text-gray-900"
+                >
+                  {subHeader}
+                </Link>
+              </li>
+            ))}
+            {/* <li className="mr-6">
               <Link
                 href="/about/"
                 className="border-none text-gray-700 hover:text-gray-900"
@@ -53,7 +64,7 @@ const Main = (props: IMainProps) => (
               >
                 Blog
               </Link>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </header>

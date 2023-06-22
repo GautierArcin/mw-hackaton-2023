@@ -8,6 +8,26 @@ a:hover {
   @apply border-b-2 border-blue-700;
 }
 
+
+h1 {
+  @apply text-2xl;
+  @apply font-bold;
+}
+
+h2 {
+  @apply text-lg;
+  @apply font-semibold;
+}
+
+p {
+  @apply text-base;
+}
+
+ li {
+  @apply list-disc;
+  @apply text-base;
+}
+
 @tailwind components;
 
 @tailwind utilities;
