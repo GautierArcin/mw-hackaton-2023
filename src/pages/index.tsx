@@ -29,8 +29,15 @@ const Index = () => {
         This project has been done in three days as a part of the{' '}
         <a href="https://mwhack.com/about" rel="nofollow">
           Meltwater 2023 hackaton
-        </a>
-        .
+        </a>{' '}
+        in order to explore the combinaison of{' '}
+        <a
+          href="https://www.cloudflare.com/learning/performance/static-site-generator/"
+          rel="nofollow"
+        >
+          Static Site generation
+        </a>{' '}
+        and AI.
       </p>
       <h3 className="font-semibold">Technologies used :</h3>
       <ul>
@@ -92,7 +99,13 @@ const Index = () => {
           <span role="img" aria-label="fire">
             📄
           </span>{' '}
-          Link each page to the different prompt that generated it
+          For each pages, add the prompt(s) that generated it
+        </li>
+        <li>
+          <span role="img" aria-label="fire">
+            🔍
+          </span>{' '}
+          Boost SEO
         </li>
       </ul>
     </Main>
