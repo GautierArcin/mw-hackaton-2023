@@ -10,7 +10,6 @@ const { chatGptArticleRequest } = CONST_CHAT_GPT;
 // console.log("env ; ", process.env)
 
 export const getBodyFromChatGpt = (article: string) => {
-  console.log('env ; ', process.env);
   const { topic } = siteInfo;
   const { postData, url } = chatGptArticleRequest(topic, article);
   return axios
