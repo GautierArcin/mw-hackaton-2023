@@ -15,6 +15,21 @@ module.exports = {
       '6xl': '4rem',
     },
     extend: {
+      animation: {
+        text: 'text 2s ease infinite',
+      },
+      keyframes: {
+        text: {
+          '0%, 100%': {
+            'background-size': '200% 200%',
+            'background-position': 'left center',
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center',
+          },
+        },
+      },
       colors: {
         gray: {
           100: '#f7fafc',

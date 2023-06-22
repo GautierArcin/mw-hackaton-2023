@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
+import siteInfo from '@/public/chatGpt/siteInfo.json';
 import { AppConfig } from '@/utils/AppConfig';
 
 type IMainProps = {
@@ -22,38 +23,28 @@ const Main = (props: IMainProps) => (
         </div>
         <nav>
           <ul className="flex flex-wrap text-xl">
-            <li className="mr-6">
+            <li className="mr-6 list-none">
               <Link
                 href="/"
-                className="border-none text-gray-700 hover:text-gray-900"
-              >
-                Home
-              </Link>
-            </li>
-            <li className="mr-6">
-              <Link
-                href="/about/"
-                className="border-none text-gray-700 hover:text-gray-900"
+                className="animate-text 
+         border-none bg-gradient-to-r 
+            from-gray-700 to-gray-900 
+            bg-clip-text font-semibold
+            text-transparent"
               >
                 About
               </Link>
             </li>
-            <li className="mr-6">
-              <a
-                className="border-none text-gray-700 hover:text-gray-900"
-                href="https://github.com/ixartz/Next-js-Boilerplate"
-              >
-                GitHub
-              </a>
-            </li>
-            <li className="mr-6">
-              <Link
-                href="/blog/"
-                className="border-none text-gray-700 hover:text-gray-900"
-              >
-                Blog
-              </Link>
-            </li>
+            {siteInfo.subHeaderList.map((subHeader) => (
+              <li key={subHeader} className="mr-6 list-none">
+                <Link
+                  href={`/${subHeader}/`}
+                  className="border-none text-gray-700 hover:text-gray-900"
+                >
+                  {subHeader}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
       </header>

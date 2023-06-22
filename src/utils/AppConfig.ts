@@ -1,8 +1,12 @@
 // FIXME: Update this configuration file based on your project information
 
+import siteInfo from '@/public/chatGpt/siteInfo.json';
+
+const { topic, subtitle } = siteInfo;
+
 export const AppConfig = {
-  site_name: 'Starter',
-  title: 'Nextjs Starter',
-  description: 'Starter code for your Nextjs Boilerplate with Tailwind CSS',
+  site_name: topic,
+  title: topic,
+  description: subtitle,
   locale: 'en',
 };
