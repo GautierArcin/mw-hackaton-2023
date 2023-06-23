@@ -4,7 +4,7 @@ import { Meta } from '@/layouts/Meta';
 import siteInfo from '@/public/chatGpt/siteInfo.json';
 import { Main } from '@/templates/Main';
 
-const { model, chatGptSubHeaderRequest, chatGptSubtitleRequest } =
+const { model, modelDallE, chatGptSubHeaderRequest, chatGptSubtitleRequest } =
   CONST_CHAT_GPT;
 
 const Index = () => {
@@ -65,7 +65,8 @@ const Index = () => {
       </p>
 
       <p>
-        This particular site used <code>{model}</code> model from ChatGpt.
+        This particular site used <code>{model}</code> and{' '}
+        <code>{modelDallE}</code> from OpenAI.
       </p>
 
       <p className="">
@@ -119,9 +120,18 @@ const Index = () => {
         </li>
         <li>
           <span role="img" aria-label="fire">
+            🎨
+          </span>{' '}
+          <a href="https://openai.com/dall-e-2" rel="nofollow">
+            Dall·E 2
+          </a>{' '}
+          for image generation
+        </li>
+        <li>
+          <span role="img" aria-label="fire">
             ☕
           </span>{' '}
-          a lot of coffee
+          A lot of coffee
         </li>
       </ul>
       <h3 className="font-semibold">To-do</h3>
@@ -140,15 +150,6 @@ const Index = () => {
         </li>
         <li>
           <span role="img" aria-label="fire">
-            🎨
-          </span>{' '}
-          Add AI-generated image with{' '}
-          <a href="https://stablediffusionapi.com/playground" rel="nofollow">
-            mid-journey
-          </a>
-        </li>
-        <li>
-          <span role="img" aria-label="fire">
             🌎
           </span>{' '}
           Add localization through{' '}
@@ -160,7 +161,14 @@ const Index = () => {
           <span role="img" aria-label="fire">
             📄
           </span>{' '}
-          For each pages, add the prompt(s) that generated it
+          Change the wrapping of images
+        </li>
+        <li>
+          <span role="img" aria-label="fire">
+            ➡️
+          </span>{' '}
+          Optimize the static generation (calling both Dall·E and OpenAI at the
+          same time)
         </li>
         <li>
           <span role="img" aria-label="fire">

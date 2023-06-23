@@ -12,7 +12,6 @@ type IMainProps = {
 
 const Main = (props: IMainProps) => {
   const router = useRouter();
-  console.log('rotuer : ', router.asPath);
   return (
     <div className="w-full px-1 text-gray-700 antialiased">
       {props.meta}

@@ -12,7 +12,7 @@ const PrettyPrintJson = ({ data }: { data: any }) => (
 
 export const Accordion = ({ content }: IProps) => {
   return (
-    <AccordionFlowbite collapseAll className="mb-4">
+    <AccordionFlowbite className="mb-4">
       <AccordionFlowbite.Panel className="">
         <AccordionFlowbite.Title className="py-0 text-base text-gray-700">
           AI requests used for this page
