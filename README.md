@@ -7,7 +7,8 @@ This project has been done in three days as a part of the Meltwater 2023 hackato
   *  Based on [this boilerplate](https://github.com/ixartz/Next-js-Boilerplate).  
 * 🤖 Chat-gpt for content generation
 
-## Deloy one yourself
+## Deploying one yourself
+
 * Clone this repo 
 * `yarn install`
 * Create a .env file with an environnement variable named `OPENAI_API_KEY`
@@ -18,3 +19,7 @@ This project has been done in three days as a part of the Meltwater 2023 hackato
   * Unfortunately, can't run it as a `prebuild` command in npm since it doesn't pass the argument. If you have any solutions, hit me up with a PR !
 * `npm run build`
 * `npm start`
+
+##  Configurating it
+
+You can configure all prompts adressed to generate content in the file `config/chatGpt.js`. 

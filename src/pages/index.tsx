@@ -1,11 +1,30 @@
+import { Accordion } from '@/component/accordion';
 import * as CONST_CHAT_GPT from '@/config/chatGpt';
 import { Meta } from '@/layouts/Meta';
 import siteInfo from '@/public/chatGpt/siteInfo.json';
 import { Main } from '@/templates/Main';
 
-const { model } = CONST_CHAT_GPT;
+const { model, chatGptSubHeaderRequest, chatGptSubtitleRequest } =
+  CONST_CHAT_GPT;
 
 const Index = () => {
+  const subHeaderRequest = chatGptSubHeaderRequest(siteInfo.topic).postData
+    .messages;
+
+  const subtitleReqquest = chatGptSubtitleRequest(siteInfo.topic).postData
+    .messages;
+
+  const accordionsContent = [
+    {
+      title: 'Website subtitle',
+      code: subtitleReqquest,
+    },
+    {
+      title: 'website categories',
+      code: subHeaderRequest,
+    },
+  ];
+
   return (
     <Main
       meta={
@@ -28,18 +47,18 @@ const Index = () => {
         </span>
       </p>
       <p className="">
-        In other terms, all of this website (including the <i>categories</i>,
+        That means that all of this website (including the <i>categories</i>,
         the <i>subtitle</i>, the <i>content</i> of each page) has been generated
-        with only
+        with only the prompt
         <span
           className="animate-text bg-gradient-to-r 
             from-indigo-500 via-purple-500  to-indigo-500 
             bg-clip-text font-semibold
             text-transparent"
         >
-          {` ${siteInfo.topic} `}
+          {` "${siteInfo.topic}", `}
         </span>
-        as an input to an IA.
+        using multiple AI.
         <br />
       </p>
 
@@ -96,6 +115,12 @@ const Index = () => {
           </a>{' '}
           for content generation
         </li>
+        <li>
+          <span role="img" aria-label="fire">
+            ☕
+          </span>{' '}
+          a lot of coffee
+        </li>
       </ul>
       <h3 className="font-semibold">To-do</h3>
       <ul>
@@ -115,7 +140,7 @@ const Index = () => {
           <span role="img" aria-label="fire">
             🎨
           </span>{' '}
-          Add IA-generated image with{' '}
+          Add AI-generated image with{' '}
           <a href="https://stablediffusionapi.com/playground" rel="nofollow">
             mid-journey
           </a>
@@ -142,6 +167,7 @@ const Index = () => {
           Boost SEO
         </li>
       </ul>
+      <Accordion content={accordionsContent} />
     </Main>
   );
 };

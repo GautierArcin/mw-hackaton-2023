@@ -51,15 +51,6 @@ const Main = (props: IMainProps) => (
 
       <main className="content pb-5 pt-3 text-xl">{props.children}</main>
 
-      {/* <Accordion className="mb-4">
-        <Accordion.Panel className="flex w-full items-center justify-between rounded-t-xl border border-b-0 border-gray-200 p-5 text-left font-medium text-gray-500 hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:focus:ring-gray-800">
-          <Accordion.Title className="text-2xl text-gray-700">
-            See code
-          </Accordion.Title>
-          <Accordion.Content>test2</Accordion.Content>
-        </Accordion.Panel>
-      </Accordion> */}
-
       <footer className="border-t border-gray-300 py-8 text-center text-sm">
         Made with ❤️ by{' '}
         <a href="https://github.com/GautierArcin">Gautier Arcin</a>. <br />{' '}
