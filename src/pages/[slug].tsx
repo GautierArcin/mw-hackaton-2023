@@ -40,14 +40,13 @@ export const getStaticPaths: GetStaticPaths<IBlogUrl> = async () => {
   };
 };
 
-const loremIpsum =
-  ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id mauris maximus, vehicula velit vitae, volutpat quam. Sed efficitur eros urna, quis sollicitudin urna varius vitae. Donec at consectetur magna, at faucibus sapien. Curabitur faucibus nunc vitae justo aliquet laoreet. Sed sit amet aliquam augue. Vivamus ex tellus, aliquet sed nunc nec, rutrum consequat velit. Donec hendrerit vel ligula sed hendrerit. Phasellus et consectetur lectus. Integer pellentesque gravida nunc, eget feugiat ipsum elementum nec. Donec nulla risus, mollis nec purus vel, interdum hendrerit mauris.\nVestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vivamus laoreet elit nisi, vel porttitor diam pellentesque id. Ut id tincidunt velit. Nullam ac velit mattis, luctus massa laoreet, viverra erat. Praesent a eros commodo urna mollis porta. Integer laoreet semper quam, quis faucibus leo. Fusce egestas nunc eget ex porta, at dignissim magna consectetur. Integer et ante eros. Donec eu faucibus turpis. Fusce vel sodales orci. Aenean ultricies, velit non ullamcorper maximus, augue ante tincidunt odio, sed eleifend lectus orci ac nisl. Phasellus et maximus felis.\nVivamus egestas aliquet dolor et lobortis. Nullam maximus posuere augue, eu luctus metus ornare vel. Vivamus nec luctus arcu, sit amet varius mi. Nulla egestas elit urna, vitae pulvinar metus posuere quis. Nunc maximus tortor eget consectetur interdum. Sed risus purus, aliquam ut justo quis, aliquet congue lectus. Nunc nulla arcu, sollicitudin ut dolor et, mattis malesuada urna. In porttitor congue nisi quis pulvinar. Nulla tincidunt nisi erat, ac vehicula enim sollicitudin id. Phasellus varius, ipsum eu egestas dapibus, ex diam finibus dui, quis molestie ligula sapien in ligula. Suspendisse tristique mauris in turpis blandit blandit. Vestibulum semper nisl tellus, quis ultricies metus tristique id. Ut a accumsan massa, at pulvinar nibh. Praesent laoreet in ex vel posuere. Vivamus sollicitudin orci justo, dictum iaculis libero laoreet quis. Nulla posuere ante eu consequat rutrum. ';
+// const loremIpsum =
+//   ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id mauris maximus, vehicula velit vitae, volutpat quam. Sed efficitur eros urna, quis sollicitudin urna varius vitae. Donec at consectetur magna, at faucibus sapien. Curabitur faucibus nunc vitae justo aliquet laoreet. Sed sit amet aliquam augue. Vivamus ex tellus, aliquet sed nunc nec, rutrum consequat velit. Donec hendrerit vel ligula sed hendrerit. Phasellus et consectetur lectus. Integer pellentesque gravida nunc, eget feugiat ipsum elementum nec. Donec nulla risus, mollis nec purus vel, interdum hendrerit mauris.\nVestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vivamus laoreet elit nisi, vel porttitor diam pellentesque id. Ut id tincidunt velit. Nullam ac velit mattis, luctus massa laoreet, viverra erat. Praesent a eros commodo urna mollis porta. Integer laoreet semper quam, quis faucibus leo. Fusce egestas nunc eget ex porta, at dignissim magna consectetur. Integer et ante eros. Donec eu faucibus turpis. Fusce vel sodales orci. Aenean ultricies, velit non ullamcorper maximus, augue ante tincidunt odio, sed eleifend lectus orci ac nisl. Phasellus et maximus felis.\nVivamus egestas aliquet dolor et lobortis. Nullam maximus posuere augue, eu luctus metus ornare vel. Vivamus nec luctus arcu, sit amet varius mi. Nulla egestas elit urna, vitae pulvinar metus posuere quis. Nunc maximus tortor eget consectetur interdum. Sed risus purus, aliquam ut justo quis, aliquet congue lectus. Nunc nulla arcu, sollicitudin ut dolor et, mattis malesuada urna. In porttitor congue nisi quis pulvinar. Nulla tincidunt nisi erat, ac vehicula enim sollicitudin id. Phasellus varius, ipsum eu egestas dapibus, ex diam finibus dui, quis molestie ligula sapien in ligula. Suspendisse tristique mauris in turpis blandit blandit. Vestibulum semper nisl tellus, quis ultricies metus tristique id. Ut a accumsan massa, at pulvinar nibh. Praesent laoreet in ex vel posuere. Vivamus sollicitudin orci justo, dictum iaculis libero laoreet quis. Nulla posuere ante eu consequat rutrum. ';
 
 export const getStaticProps: GetStaticProps<IBlogProps, IBlogUrl> = async ({
   params,
 }) => {
   const generateImage = siteInfo?.image === 'yes';
-  // const generateImage = false;
 
   const data = await getBodyFromChatGpt(params!.slug);
   // const data = loremIpsum;
@@ -67,16 +66,8 @@ export const getStaticProps: GetStaticProps<IBlogProps, IBlogUrl> = async ({
 
   if (generateImage) {
     const data2 = await getImageFromDallE(params!.slug);
-    console.log('data 2 : ', data2);
-    // console.log(
-    //   'data 3 : ',
-    //   data2.data.map((e: any) => e.url)
-    // );
     const imagesListe = data2.data.map((e: any) => e.url);
     const url = imagesListe[0]; // Only keeping one image at the moment
-
-    // const url =
-    //   'https://oaidalleapiprodscus.blob.core.windows.net/private/org-lguZmA08f9unFRyqdlJe9BOf/user-HxVMG2svVuty6RVqfeyNN6QX/img-3Uzy3896B1RkVv0bsWQjqcb0.png?st=2023-06-23T12%3A07%3A55Z&se=2023-06-23T14%3A07%3A55Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-06-22T23%3A47%3A08Z&ske=2023-06-23T23%3A47%3A08Z&sks=b&skv=2021-08-06&sig=kbj5%2B48eGRKsTX6zy5Tnsu1GcZBHEuIvq88E9ulcIRQ%3D';
     const response = await fetch(url);
     const blob = await response.blob();
     const arrayBuffer = await blob.arrayBuffer();
