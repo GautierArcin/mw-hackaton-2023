@@ -5,7 +5,7 @@ This project has been done in three days as a part of the Meltwater 2023 hackato
 ## Technologies used :
 * 🔥 Next.js for Static Site Generation
   *  Based on [this boilerplate](https://github.com/ixartz/Next-js-Boilerplate).  
-* 🤖 Chat-gpt for content generation
+* 🤖 Chat-gpt and DALL-E for content generation
 
 ## Deploying one yourself
 
