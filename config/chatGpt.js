@@ -90,6 +90,7 @@ const chatGptArticleRequest = (topic, article) => ({
 });
 
 module.exports = {
+  model,
   chatGptSubHeaderRequest,
   chatGptArticleRequest,
   chatGptSubtitleRequest,

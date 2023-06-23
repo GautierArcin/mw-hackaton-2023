@@ -1,6 +1,9 @@
+import * as CONST_CHAT_GPT from '@/config/chatGpt';
 import { Meta } from '@/layouts/Meta';
 import siteInfo from '@/public/chatGpt/siteInfo.json';
 import { Main } from '@/templates/Main';
+
+const { model } = CONST_CHAT_GPT;
 
 const Index = () => {
   return (
@@ -12,7 +15,7 @@ const Index = () => {
         />
       }
     >
-      <p className="text-base font-semibold">
+      <p className="my-3 text-base font-semibold">
         Except this page, all of this website has been generated with this
         prompt :{' '}
         <span
@@ -23,6 +26,25 @@ const Index = () => {
         >
           {siteInfo.topic}
         </span>
+      </p>
+      <p className="">
+        In other terms, all of this website (including the <i>categories</i>,
+        the <i>subtitle</i>, the <i>content</i> of each page) has been generated
+        with only
+        <span
+          className="animate-text bg-gradient-to-r 
+            from-indigo-500 via-purple-500  to-indigo-500 
+            bg-clip-text font-semibold
+            text-transparent"
+        >
+          {` ${siteInfo.topic} `}
+        </span>
+        as an input to an IA.
+        <br />
+      </p>
+
+      <p>
+        This particular site used <code>{model}</code> model from ChatGpt.
       </p>
 
       <p className="">
@@ -39,6 +61,18 @@ const Index = () => {
         </a>{' '}
         and AI.
       </p>
+
+      <p className="">
+        Wants to do deploy your own in minutes ? Just follow the readme
+        <a
+          href="https://github.com/GautierArcin/mw-hackaton-2023"
+          rel="nofollow"
+        >
+          {' '}
+          of this github repo.
+        </a>
+      </p>
+
       <h3 className="font-semibold">Technologies used :</h3>
       <ul>
         <li>

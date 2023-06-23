@@ -12,33 +12,45 @@ a:hover {
 h1 {
   @apply text-2xl;
   @apply font-bold;
-  @apply antialiased
+  @apply antialiased;
+  @apply my-3;
 }
 
 h2 {
   @apply text-lg;
   @apply font-semibold;
-  @apply antialiased
+  @apply antialiased;
+  @apply my-3;
+}
+
+h3 {
+  @apply antialiased;
+  @apply my-3;
 }
 
 p {
   @apply text-base;
-  @apply antialiased
+  @apply antialiased;
+  @apply my-6;
 }
 
  li {
   @apply list-disc;
   @apply text-base;
-  @apply antialiased
+  @apply antialiased;
+}
+
+code {
+  @apply bg-amber-300;
+  @apply bg-opacity-50;
 }
 
 @tailwind components;
 
 @tailwind utilities;
 
-.content p {
-  @apply my-6;
-}
+/* .content p {
+} */
 
 .content ul {
   @apply my-6;
