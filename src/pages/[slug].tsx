@@ -46,7 +46,7 @@ export const getStaticPaths: GetStaticPaths<IBlogUrl> = async () => {
 export const getStaticProps: GetStaticProps<IBlogProps, IBlogUrl> = async ({
   params,
 }) => {
-  const generateImage = siteInfo?.image === 'yes';
+  const generateImage = siteInfo?.image === true;
 
   const data = await getBodyFromChatGpt(params!.slug);
   // const data = loremIpsum;
