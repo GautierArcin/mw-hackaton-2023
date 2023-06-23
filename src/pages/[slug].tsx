@@ -21,7 +21,8 @@ type IBlogUrl = {
   slug: string;
 };
 
-type IBlogProps = IBlogUrl & {
+type IBlogProps = {
+  title: string;
   data: string;
   request: ContentType[];
 };
@@ -36,7 +37,7 @@ export const getStaticPaths: GetStaticPaths<IBlogUrl> = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<IBlogProps, IBlogProps> = async ({
+export const getStaticProps: GetStaticProps<IBlogProps, IBlogUrl> = async ({
   params,
 }) => {
   const data = await getBodyFromChatGpt(params!.slug);
@@ -52,7 +53,7 @@ export const getStaticProps: GetStaticProps<IBlogProps, IBlogProps> = async ({
 
   return {
     props: {
-      slug: params!.slug,
+      title: params!.slug,
       data,
       request: accordionContent,
     },
@@ -60,10 +61,8 @@ export const getStaticProps: GetStaticProps<IBlogProps, IBlogProps> = async ({
 };
 
 const Blog = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log('props : ', props);
-  console.log('typeof data ', typeof props.data);
   return (
-    <Main meta={<Meta title={props.slug} description="Lorem ipsum" />}>
+    <Main meta={<Meta title={props.title} description="Lorem ipsum" />}>
       <ReactMarkdown children={props.data} />
       <Accordion content={props.request} />
     </Main>
