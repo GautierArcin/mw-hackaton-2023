@@ -1,18 +1,42 @@
+import { Accordion } from '@/component/accordion';
+import * as CONST_CHAT_GPT from '@/config/chatGpt';
 import { Meta } from '@/layouts/Meta';
 import siteInfo from '@/public/chatGpt/siteInfo.json';
 import { Main } from '@/templates/Main';
 
+const { model, modelDallE, chatGptSubHeaderRequest, chatGptSubtitleRequest } =
+  CONST_CHAT_GPT;
+
 const Index = () => {
+  const subHeaderRequest = chatGptSubHeaderRequest(siteInfo.topic).postData
+    .messages;
+
+  const subtitleReqquest = chatGptSubtitleRequest(siteInfo.topic).postData
+    .messages;
+
+  const { topic } = siteInfo;
+
+  const accordionsContent = [
+    {
+      title: 'Website subtitle',
+      code: subtitleReqquest,
+    },
+    {
+      title: 'website categories',
+      code: subHeaderRequest,
+    },
+  ];
+
   return (
     <Main
       meta={
         <Meta
-          title="Site presentation"
-          description="Next js Boilerplate is the perfect starter code for your project. Build your React application with the."
+          title={`AI generated website about ${topic} 🤖`}
+          description={`This website was statically generated through ChatGPt, only with the prompt "${topic}".`}
         />
       }
     >
-      <p className="text-base font-semibold">
+      <p className="my-3 text-base font-semibold">
         Except this page, all of this website has been generated with this
         prompt :{' '}
         <span
@@ -23,6 +47,26 @@ const Index = () => {
         >
           {siteInfo.topic}
         </span>
+      </p>
+      <p className="">
+        That means that all of this website (including the <i>categories</i>,
+        the <i>subtitle</i>, the <i>content</i> of each page) has been generated
+        with only the prompt
+        <span
+          className="animate-text bg-gradient-to-r 
+            from-indigo-500 via-purple-500  to-indigo-500 
+            bg-clip-text font-semibold
+            text-transparent"
+        >
+          {` "${siteInfo.topic}", `}
+        </span>
+        using multiple AI.
+        <br />
+      </p>
+
+      <p>
+        This particular site used <code>{model}</code> and{' '}
+        <code>{modelDallE}</code> from OpenAI.
       </p>
 
       <p className="">
@@ -39,6 +83,18 @@ const Index = () => {
         </a>{' '}
         and AI.
       </p>
+
+      <p className="">
+        Wants to do deploy your own in minutes ? Just follow the readme
+        <a
+          href="https://github.com/GautierArcin/mw-hackaton-2023"
+          rel="nofollow"
+        >
+          {' '}
+          of this github repo.
+        </a>
+      </p>
+
       <h3 className="font-semibold">Technologies used :</h3>
       <ul>
         <li>
@@ -62,6 +118,21 @@ const Index = () => {
           </a>{' '}
           for content generation
         </li>
+        <li>
+          <span role="img" aria-label="fire">
+            🎨
+          </span>{' '}
+          <a href="https://openai.com/dall-e-2" rel="nofollow">
+            Dall·E 2
+          </a>{' '}
+          for image generation
+        </li>
+        <li>
+          <span role="img" aria-label="fire">
+            ☕
+          </span>{' '}
+          A lot of coffee
+        </li>
       </ul>
       <h3 className="font-semibold">To-do</h3>
       <ul>
@@ -79,15 +150,6 @@ const Index = () => {
         </li>
         <li>
           <span role="img" aria-label="fire">
-            🎨
-          </span>{' '}
-          Add IA-generated image with{' '}
-          <a href="https://stablediffusionapi.com/playground" rel="nofollow">
-            mid-journey
-          </a>
-        </li>
-        <li>
-          <span role="img" aria-label="fire">
             🌎
           </span>{' '}
           Add localization through{' '}
@@ -99,7 +161,14 @@ const Index = () => {
           <span role="img" aria-label="fire">
             📄
           </span>{' '}
-          For each pages, add the prompt(s) that generated it
+          Change the wrapping of images
+        </li>
+        <li>
+          <span role="img" aria-label="fire">
+            ➡️
+          </span>{' '}
+          Optimize the static generation (calling both Dall·E and OpenAI at the
+          same time)
         </li>
         <li>
           <span role="img" aria-label="fire">
@@ -108,6 +177,7 @@ const Index = () => {
           Boost SEO
         </li>
       </ul>
+      <Accordion content={accordionsContent} />
     </Main>
   );
 };

@@ -5,13 +5,13 @@ import axios from 'axios';
 import siteInfo from '@/public/chatGpt/siteInfo.json';
 import * as CONST_CHAT_GPT from '@/config/chatGpt';
 
-const { chatGptArticleRequest } = CONST_CHAT_GPT;
+const { dalleRequest } = CONST_CHAT_GPT;
 
 // console.log("env ; ", process.env)
 
-export const getBodyFromChatGpt = (article: string) => {
+export const getImageFromDallE = (article: string) => {
   const { topic } = siteInfo;
-  const { postData, url } = chatGptArticleRequest(topic, article);
+  const { url, postData } = dalleRequest(topic, article);
   return axios
     .post(url, postData, {
       headers: {
@@ -20,7 +20,7 @@ export const getBodyFromChatGpt = (article: string) => {
       },
     })
     .then((response) => {
-      return response.data.choices[0].message.content;
+      return response.data;
     })
     .catch((e) => console.error(e));
 };

@@ -1,6 +1,13 @@
+/* eslint-disable global-require */
+// eslint-disable-next-line import/no-extraneous-dependencies
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './node_modules/flowbite-react/**/*.js',
+    './src/**/*.{js,ts,jsx,tsx}',
+  ],
   theme: {
     fontSize: {
       xs: '0.75rem',
@@ -14,7 +21,11 @@ module.exports = {
       '5xl': '3rem',
       '6xl': '4rem',
     },
+
     extend: {
+      fontFamily: {
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+      },
       animation: {
         text: 'text 2s ease infinite',
       },
@@ -56,5 +67,6 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  // eslint-disable-next-line import/no-extraneous-dependencies
+  plugins: [require('flowbite/plugin')],
 };

@@ -1,7 +1,9 @@
 // Global
 
 const model = 'gpt-3.5-turbo';
+const modelDallE = 'Dall·E 2';
 const urlAPICompletion = 'https://api.openai.com/v1/chat/completions';
+const urlAPIImage = 'https://api.openai.com/v1/images/generations';
 
 const filePathToExport = 'public/chatGpt/siteInfo.json';
 
@@ -10,7 +12,7 @@ const filePathToExport = 'public/chatGpt/siteInfo.json';
 const chatGptSubHeaderPrompt = (topic) => [
   {
     role: 'user',
-    content: `Generate what a static, text-only website navigation bar about the topic ${topic} would look like`,
+    content: `Generate a static, text-only website navigation bar about the topic ${topic}`,
   },
   {
     role: 'system',
@@ -18,11 +20,11 @@ const chatGptSubHeaderPrompt = (topic) => [
   },
   {
     role: 'system',
-    content: `Give only an unordered list of navigation bar item, without media nor contact nor contact us nor blog nor References nor about`,
+    content: `Give only an unordered list of navigation bar item, without media nor contact nor contact us nor blog nor references nor about`,
   },
   {
     role: 'system',
-    content: `Give at between 4 and 7 items and make each items 5 words at most`,
+    content: `Give between 4 and 7 items and make each items 5 words at most`,
   },
 ];
 
@@ -63,7 +65,8 @@ const chatGptSubtitleRequest = (topic) => ({
 
 // Content
 
-const filePathToExportArticle = (article) => `data/subHeader${article}.json`;
+const filePathToExportArticle = (article) =>
+  `public/chatGpt/articles/${article}.json`;
 
 const chatGptArticlePrompt = (topic, article) => [
   {
@@ -78,6 +81,10 @@ const chatGptArticlePrompt = (topic, article) => [
     role: 'system',
     content: `Format it in markdown. Uses # and ## tags.`,
   },
+  {
+    role: 'system',
+    content: `No introduction, no conclusion..`,
+  },
 ];
 
 const chatGptArticleRequest = (topic, article) => ({
@@ -89,8 +96,36 @@ const chatGptArticleRequest = (topic, article) => ({
   url: urlAPICompletion,
 });
 
+// Images
+
+// Should be 256, 512 or 1024
+const imageResolution = 512;
+
+const filePathToAcessImages = `/dalle/articles`;
+
+const filePathToExportImages = (article) =>
+  `public${filePathToAcessImages}/${article}.jpg`;
+
+const dallePrompt = (topic, article) => ({
+  prompt: `${article} of ${topic}`,
+  n: 1,
+  size: `${imageResolution}x${imageResolution}`,
+});
+
+const dalleRequest = (topic, article) => ({
+  postData: dallePrompt(topic, article),
+  filePath: filePathToExportImages(article),
+  url: urlAPIImage,
+});
+
 module.exports = {
+  model,
+  modelDallE,
   chatGptSubHeaderRequest,
   chatGptArticleRequest,
   chatGptSubtitleRequest,
+  filePathToExportImages,
+  filePathToAcessImages,
+  dalleRequest,
+  imageResolution,
 };

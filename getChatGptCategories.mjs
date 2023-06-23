@@ -10,6 +10,10 @@ dotenv.config();
 const topic = process.argv[2] || 'Meltwater'; // Processing argument with default being meltwater
 console.log("Topic used for chat gpt : ", topic)
 
+const generateImage = (process.argv[3] === "yes" || process.argv[3] === '"yes"'  || process.argv[3] === "'yes'") 
+console.log("Generating image ? ", generateImage)
+
+
 const requestCategories = chatGptSubHeaderRequest(topic)
 const requestSubtitle = chatGptSubtitleRequest(topic)
 
@@ -41,7 +45,7 @@ async function fetchDataAndWriteAsJson(requestCategories, requestSubtitle) {
     console.log("\nsubheader list : ", responseSubtitle.choices[0].message.content.split("\n"))
     const subtitle =  responseSubtitle.choices[0].message.content.split("\n").map((e) => e.trim().replace(".",""))
 
-    const dataToStringify = {topic, subtitle, subHeaderList}
+    const dataToStringify = {topic, subtitle, subHeaderList, image: generateImage}
     console.log("\n")
     console.log("\ndata to stringifty :", dataToStringify)
     const jsonData = JSON.stringify(dataToStringify);
