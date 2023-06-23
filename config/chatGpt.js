@@ -50,7 +50,11 @@ const chatGptSubtitlePrompt = (topic) => [
   },
   {
     role: 'system',
-    content: `Only alphabetic character or emoji, no quote`,
+    content: `Only alphabetic character or emoji, no quote.`,
+  },
+  {
+    role: 'system',
+    content: `Use an emoji at the end.`,
   },
 ];
 
