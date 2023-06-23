@@ -1,5 +1,6 @@
 // Global
 
+// const model = 'gpt-3.5-turbo-0613';
 const model = 'gpt-3.5-turbo';
 const modelDallE = 'Dall·E 2';
 const urlAPICompletion = 'https://api.openai.com/v1/chat/completions';
