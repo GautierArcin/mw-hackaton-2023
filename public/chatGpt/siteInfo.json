@@ -1,1 +1,6 @@
-{"topic":"Zelda breath of the wild","subtitle":["Discover the vast world of Hyrule with this adventure guide"],"subHeaderList":["Home","Characters","Weapons","Locations","Walkthrough"]}
+{
+  "image": "yes",
+  "topic": "Zelda breath of the wild",
+  "subtitle": ["Discover the vast world of Hyrule with this adventure guide"],
+  "subHeaderList": ["Home", "Characters", "Weapons", "Locations", "Walkthrough"]
+}

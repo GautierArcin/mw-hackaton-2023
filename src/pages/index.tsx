@@ -14,6 +14,8 @@ const Index = () => {
   const subtitleReqquest = chatGptSubtitleRequest(siteInfo.topic).postData
     .messages;
 
+  const { topic } = siteInfo;
+
   const accordionsContent = [
     {
       title: 'Website subtitle',
@@ -29,8 +31,8 @@ const Index = () => {
     <Main
       meta={
         <Meta
-          title="Site presentation"
-          description="Next js Boilerplate is the perfect starter code for your project. Build your React application with the."
+          title={`AI generated website about ${topic} 🤖`}
+          description={`This website was statically generated through ChatGPt, only with the prompt "${topic}".`}
         />
       }
     >
